@@ -170,7 +170,9 @@ return through.obj( ( vinylFile, encoding, callback ) => {
     const transformedFile = vinylFile.clone();
 
     try {
-        const result = sass.compile(transformedFile.path);
+        const result = sass.compile(transformedFile.path, {
+            silenceDeprecations: ['import']
+        });
         transformedFile.extname = '.css';
         transformedFile.contents = Buffer.from(result.css);
         callback( null, transformedFile );
