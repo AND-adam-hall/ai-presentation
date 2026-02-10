@@ -75,10 +75,6 @@
 				
 				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ],
 
-				markdown: {
-					preprocess: window.markdownPreProcessor
-				},
-
 				autoAnimateStyles: [
 					'opacity',
 					'color',
@@ -103,21 +99,19 @@
 			
 			Reveal.on( 'slidechanged', event => {
 				const current = event.currentSlide;
-				const background = event.currentSlide.slideBackgroundContentElement.closest(".stack").querySelector(".slide-background-content")
-				console.log("SLIDE", event.currentSlide);
-				if(event.currentSlide.dataset.state == "focus-bg") {
-					//Reveal.dispatchEvent("focus-bg")
-					background.classList.add("focus");
-					background.classList.remove("blur");
-					
-				} else {// if(event.currentSlide.dataset.state == "blur-bg") {
-					background.classList.add("blur");
-					background.classList.remove("focus");
-					
-					//Reveal.dispatchEvent("blur-bg")
-				}
+				const background = current?.slideBackgroundContentElement?.closest(".stack")?.querySelector(".slide-background-content");
 				
-				// event.previousSlide, event.currentSlide, event.indexh, event.indexv
+				console.log("SLIDE", current);
+				
+				if(background) {
+					if(current?.dataset?.state === "focus-bg") {
+						background.classList.add("focus");
+						background.classList.remove("blur");
+					} else {
+						background.classList.add("blur");
+						background.classList.remove("focus");
+					}
+				}
 			} );
 			Reveal.configure({ pdfSeparateFragments: false });
 

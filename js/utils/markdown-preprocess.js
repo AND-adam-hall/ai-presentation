@@ -1,57 +1,63 @@
 /**
  * Automatically makes subsequent headers and list items fragments.
- * The first header or list item on a slide is shown immediately,
- * while all following ones are animated in as fragments.
+ * This script runs after Reveal.js has rendered the markdown into HTML.
  */
-window.markdownPreProcessor = function( markdown ) {
-    console.groupCollapsed('Markdown Pre-processor');
-    console.log('Original:', markdown);
+console.log('Markdown Post-processor Script Loaded');
+
+window.initAutoFragments = function() {
+    console.log('Initializing Auto-Fragments...');
     
-    var lines = markdown.split('\n');
-    var seenFirst = false;
+    // Find all slides (sections)
+    const slides = document.querySelectorAll('.reveal .slides section');
     
-    for ( var i = 0; i < lines.length; i++ ) {
-        var line = lines[i];
-        var trimmed = line.trim();
+    slides.forEach((slide, slideIndex) => {
+        // We only care about "leaf" slides (those that don't contain other sections)
+        if (slide.querySelector('section')) return;
+
+        // Find all potential fragment elements: headers and list items
+        // We look for direct children or items inside lists
+        const candidates = slide.querySelectorAll('h1, h2, h3, h4, h5, h6, li, p');
         
-        // Reset on slide separators
-        if ( /^---$|^___$/.test( trimmed ) ) {
-            seenFirst = false;
-            continue;
-        }
-
-        // Skip empty lines or existing notes
-        if ( trimmed === '' || /^Note:/.test(trimmed) ) continue;
-
-        var isHeader = /^#{1,6}\s/.test( trimmed );
-        var isListItem = /^[-*+]\s/.test( trimmed ) || /^\d+\.\s/.test( trimmed );
-
-        if ( isHeader || isListItem ) {
-            if ( !seenFirst ) {
+        let seenFirst = false;
+        
+        candidates.forEach((el) => {
+            // Skip if it's already a fragment
+            if (el.classList.contains('fragment')) {
                 seenFirst = true;
-            } else {
-                // It's a subsequent element, make it a fragment if not already one
-                if ( !/class="[^"]*fragment[^"]*"/.test( line ) ) {
-                    if ( /<!--\.element:/.test( line ) ) {
-                        if ( /class="([^"]*)"/.test( line ) ) {
-                            lines[i] = line.replace( /class="([^"]*)"/, 'class="$1 fragment"' );
-                        } else {
-                            lines[i] = line.replace( /<!--\.element:\s*/, '<!--.element: class="fragment" ' );
-                        }
-                    } else {
-                        lines[i] = line + ' <!-- .element: class="fragment" -->';
-                    }
-                }
+                return;
             }
-        } else {
-            // Non-empty, non-header, non-list content also counts as "seen first"
-            seenFirst = true;
-        }
+
+            // Skip "Note:" elements
+            if (el.textContent.trim().startsWith('Note:')) return;
+
+            if (!seenFirst) {
+                // This is the first meaningful element, keep it visible
+                seenFirst = true;
+                console.log(`Slide ${slideIndex}: Keeping first element visible:`, el.tagName, el.textContent.substring(0, 20));
+            } else {
+                // This is a subsequent element, make it a fragment
+                el.classList.add('fragment');
+                // el.setAttribute('data-fragment-index', ...); // Optional: fine-grained control
+            }
+        });
+    });
+
+    // Tell Reveal.js to sync its internal state with the new fragments we just added
+    if (window.Reveal) {
+        Reveal.sync();
     }
-    
-    var result = lines.join('\n');
-    console.log('Processed:', result);
-    console.groupEnd();
-    
-    return result;
 };
+
+// Hook into Reveal.js ready event
+if (window.Reveal) {
+    Reveal.on('ready', () => {
+        window.initAutoFragments();
+    });
+} else {
+    // Fallback if script loads after Reveal is ready
+    document.addEventListener('DOMContentLoaded', () => {
+        if (window.Reveal && Reveal.isReady()) {
+            window.initAutoFragments();
+        }
+    });
+}
