@@ -34,5 +34,5 @@ $selectionBackgroundColor: #e7ad52 !default;
 
 
 // Theme template ------------------------------
-@use "../template/theme" as *;
+@import "../template/theme";
 // ---------------------------------------------

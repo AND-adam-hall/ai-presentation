@@ -40,5 +40,5 @@ $overlayElementFgColor: 240, 240, 240 !default;
 
 
 // Theme template ------------------------------
-@use "../template/theme" as *;
+@import "../template/theme";
 // ---------------------------------------------

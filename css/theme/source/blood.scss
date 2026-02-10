@@ -52,7 +52,7 @@ $selectionColor: #fff !default;
 
 
 // Theme template ------------------------------
-@use "../template/theme" as *;
+@import "../template/theme";
 // ---------------------------------------------
 
 // some overrides after theme template import

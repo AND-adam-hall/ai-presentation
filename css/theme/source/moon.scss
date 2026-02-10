@@ -51,5 +51,5 @@ $selectionBackgroundColor: $magenta !default;
 @include light-bg-text-color(#222);
 
 // Theme template ------------------------------
-@use "../template/theme" as *;
+@import "../template/theme";
 // ---------------------------------------------

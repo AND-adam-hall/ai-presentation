@@ -43,5 +43,5 @@ $heading4Size: 1.0em !default;
 
 
 // Theme template ------------------------------
-@use "../template/theme" as *;
+@import "../template/theme";
 // ---------------------------------------------

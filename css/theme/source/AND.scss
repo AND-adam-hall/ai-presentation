@@ -8,11 +8,10 @@
 
 
 // Default mixins and settings -----------------
+@use "sass:color";
 @use "../template/mixins" as *;
 @use "../template/settings" as *;
 // ---------------------------------------------
-
-
 
 // Include theme-specific fonts
 @import url(https://fonts.googleapis.com/css2?family=Poppins:wght@800&display=swap);
@@ -64,5 +63,5 @@ $headingFontWeight: bold !default;
 
 
 // Theme template ------------------------------
-@use "../template/theme" as *;
+@import "../template/theme";
 // ---------------------------------------------

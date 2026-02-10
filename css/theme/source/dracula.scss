@@ -74,7 +74,7 @@ $codeFont: "Fira Code", $systemFontsMono !default;
 @include light-bg-text-color($background);
 
 // Theme template ------------------------------
-@use "../template/theme" as *;
+@import "../template/theme";
 // ---------------------------------------------
 
 // Define additional color effects based on Dracula spec

@@ -5,7 +5,7 @@
  *********************************************/
 
 @use "sass:color";
-@use "./exposer" as *;
+@import "./exposer";
 
 .reveal-viewport {
 	@include bodyBackground();

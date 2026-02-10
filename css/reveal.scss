@@ -2109,6 +2109,6 @@ $notesWidthPercent: 25%;
  * PRINT STYLES
  *********************************************/
 
-@use 'print/pdf';
-@use 'print/paper';
+@import 'print/pdf';
+@import 'print/paper';
 
