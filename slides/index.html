@@ -4,7 +4,7 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<title>AND Digital Training</title>
+		<title>PA Media AI Navigator Immersion Session</title>
 
 		<link rel="stylesheet" href="../dist/reset.css">
 		<link rel="stylesheet" href="../dist/reveal.css">
@@ -73,6 +73,57 @@
 				//parallaxBackgroundHorizontal: 0,
 				
 				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ],
+
+				markdown: {
+					preprocess: function( markdown ) {
+						console.groupCollapsed('Markdown Pre-processor');
+						console.log('Original:', markdown);
+						var lines = markdown.split( '\n' );
+						var seenFirst = false;
+						for ( var i = 0; i < lines.length; i++ ) {
+							var line = lines[i];
+							var trimmed = line.trim();
+							
+							// Reset on slide separators
+							if ( /^---$|^___$/.test( trimmed ) ) {
+								seenFirst = false;
+								continue;
+							}
+
+							// Skip empty lines or existing notes
+							if ( trimmed === '' || /^Note:/.test(trimmed) ) continue;
+
+							var isHeader = /^#{1,6}\s/.test( trimmed );
+							var isListItem = /^[-*+]\s/.test( trimmed ) || /^\d+\.\s/.test( trimmed );
+
+							if ( isHeader || isListItem ) {
+								if ( !seenFirst ) {
+									seenFirst = true;
+								} else {
+									// It's a subsequent element, make it a fragment if not already one
+									if ( !/class="[^"]*fragment[^"]*"/.test( line ) ) {
+										if ( /<!--\.element:/.test( line ) ) {
+											if ( /class="([^"]*)"/.test( line ) ) {
+												lines[i] = line.replace( /class="([^"]*)"/, 'class="$1 fragment"' );
+											} else {
+												lines[i] = line.replace( /<!--\.element:\s*/, '<!--.element: class="fragment" ' );
+											}
+										} else {
+											lines[i] = line + ' <!-- .element: class="fragment" -->';
+										}
+									}
+								}
+							} else {
+								// Non-empty, non-header, non-list content also counts as "seen first"
+								seenFirst = true;
+							}
+						}
+						var result = lines.join( '\n' );
+						console.log('Processed:', result);
+						console.groupEnd();
+						return result;
+					}
+				},
 
 				autoAnimateStyles: [
 					'opacity',

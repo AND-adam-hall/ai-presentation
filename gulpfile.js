@@ -332,8 +332,9 @@ function renderPresentations() {
     fs.writeFile('output/sections.html', htmlContent, function() {
     });
 }
-gulp.task('merge-presentation', () => {
+gulp.task('merge-presentation', (done) => {
     renderPresentations();
+    done();
 })
 
 gulp.task('serve', () => {
