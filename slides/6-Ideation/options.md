@@ -2,9 +2,9 @@
 ### Ideation & Realization
 ---
 ### Agentic AI
-- Linking tools together <!-- .element: class="fragment" -->
-- Autonomous workflows <!-- .element: class="fragment" -->
+- Linking tools together
+- Autonomous workflows
 ---
 ### Bringing Ideas to Life
-- Non-obvious quick wins <!-- .element: class="fragment" -->
-- Solving your specific bottlenecks <!-- .element: class="fragment" -->
+- Non-obvious quick wins
+- Solving your specific bottlenecks

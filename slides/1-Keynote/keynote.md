@@ -2,6 +2,6 @@
 ### The New Industrial Revolution
 ---
 ### A Paradigm Shift
-- From Manual to Machine Intelligence <!-- .element: class="fragment" -->
-- The scale of change <!-- .element: class="fragment" -->
-- Why PA Media must lead <!-- .element: class="fragment" -->
+- From Manual to Machine Intelligence
+- The scale of change
+- Why PA Media must lead

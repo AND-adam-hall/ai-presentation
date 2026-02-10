@@ -2,14 +2,14 @@
 ### Demystifying Core Concepts
 ---
 ### How it Works
-- Pattern Matching vs. Understanding <!-- .element: class="fragment" -->
-- Probability over Logic <!-- .element: class="fragment" -->
+- Pattern Matching vs. Understanding
+- Probability over Logic
 ---
 ### Data: The Core Engine
-- **Garbage In, Garbage Out (GIGO)** <!-- .element: class="fragment" -->
-- The role of high-quality training data <!-- .element: class="fragment" -->
-- Why PA Media's archive is a goldmine <!-- .element: class="fragment" -->
+- **Garbage In, Garbage Out (GIGO)**
+- The role of high-quality training data
+- Why PA Media's archive is a goldmine
 ---
 ### Guardrails (Quick Look)
-- **Thinkers**: Security Framework <!-- .element: class="fragment" -->
-- **Lenses**: Ethics Framework <!-- .element: class="fragment" -->
+- **Thinkers**: Security Framework
+- **Lenses**: Ethics Framework

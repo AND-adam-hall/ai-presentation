@@ -2,9 +2,9 @@
 ### Learnings & Commitments
 ---
 ### Discussing Learnings
-- What surprised you? <!-- .element: class="fragment" -->
-- What is now possible? <!-- .element: class="fragment" -->
+- What surprised you?
+- What is now possible?
 ---
 ### Commitment Contracts
-- One thing you will do differently tomorrow <!-- .element: class="fragment" -->
-- One project you will support <!-- .element: class="fragment" -->
+- One thing you will do differently tomorrow
+- One project you will support
