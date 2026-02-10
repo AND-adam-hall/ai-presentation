@@ -7,8 +7,7 @@ window.markdownPreProcessor = function( markdown ) {
     console.groupCollapsed('Markdown Pre-processor');
     console.log('Original:', markdown);
     
-    var lines = markdown.split( '
-' );
+    var lines = markdown.split('\n');
     var seenFirst = false;
     
     for ( var i = 0; i < lines.length; i++ ) {
@@ -50,8 +49,7 @@ window.markdownPreProcessor = function( markdown ) {
         }
     }
     
-    var result = lines.join( '
-' );
+    var result = lines.join('\n');
     console.log('Processed:', result);
     console.groupEnd();
     
