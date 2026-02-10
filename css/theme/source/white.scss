@@ -7,8 +7,8 @@
 
 
 // Default mixins and settings -----------------
-@import "../template/mixins";
-@import "../template/settings";
+@use "../template/mixins" as *;
+@use "../template/settings" as *;
 // ---------------------------------------------
 
 
@@ -17,34 +17,34 @@
 
 
 // Override theme settings (see ../template/settings.scss)
-$backgroundColor: #fff;
+$backgroundColor: #fff !default !default;
 
-$mainColor: #222;
-$headingColor: #222;
+$mainColor: #222 !default !default;
+$headingColor: #222 !default !default;
 
-$mainFontSize: 42px;
-$mainFont: 'Source Sans Pro', Helvetica, sans-serif;
-$headingFont: 'Source Sans Pro', Helvetica, sans-serif;
-$headingTextShadow: none;
-$headingLetterSpacing: normal;
-$headingTextTransform: uppercase;
-$headingFontWeight: 600;
-$linkColor: #2a76dd;
-$linkColorHover: color.adjust( $linkColor, $lightness: 15% );
-$selectionBackgroundColor: color.adjust( $linkColor, $lightness: 25% );
+$mainFontSize: 42px !default !default;
+$mainFont: 'Source Sans Pro', Helvetica, sans-serif !default !default;
+$headingFont: 'Source Sans Pro', Helvetica, sans-serif !default !default;
+$headingTextShadow: none !default !default;
+$headingLetterSpacing: normal !default !default;
+$headingTextTransform: uppercase !default !default;
+$headingFontWeight: 600 !default !default;
+$linkColor: #2a76dd !default !default;
+$linkColorHover: color.adjust( $linkColor, $lightness: 15% ) !default !default;
+$selectionBackgroundColor: color.adjust( $linkColor, $lightness: 25% ) !default !default;
 
-$heading1Size: 2.5em;
-$heading2Size: 1.6em;
-$heading3Size: 1.3em;
-$heading4Size: 1.0em;
+$heading1Size: 2.5em !default !default;
+$heading2Size: 1.6em !default !default;
+$heading3Size: 1.3em !default !default;
+$heading4Size: 1.0em !default !default;
 
-$overlayElementBgColor: 0, 0, 0;
-$overlayElementFgColor: 240, 240, 240;
+$overlayElementBgColor: 0, 0, 0 !default !default;
+$overlayElementFgColor: 240, 240, 240 !default !default;
 
 // Change text colors against dark slide backgrounds
 @include dark-bg-text-color(#fff);
 
 
 // Theme template ------------------------------
-@import "../template/theme";
+@use "../template/theme" as *;
 // ---------------------------------------------

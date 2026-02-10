@@ -4,7 +4,8 @@
  * GLOBAL STYLES
  *********************************************/
 
-@import "./exposer";
+@use "sass:color";
+@use "./exposer" as *;
 
 .reveal-viewport {
 	@include bodyBackground();

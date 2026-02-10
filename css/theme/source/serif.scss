@@ -8,26 +8,26 @@
 
 
 // Default mixins and settings -----------------
-@import "../template/mixins";
-@import "../template/settings";
+@use "../template/mixins" as *;
+@use "../template/settings" as *;
 // ---------------------------------------------
 
 
 
 // Override theme settings (see ../template/settings.scss)
-$mainFont: 'Palatino Linotype', 'Book Antiqua', Palatino, FreeSerif, serif;
-$mainColor: #000;
-$headingFont: 'Palatino Linotype', 'Book Antiqua', Palatino, FreeSerif, serif;
-$headingColor: #383D3D;
-$headingTextShadow: none;
-$headingTextTransform: none;
-$backgroundColor: #F0F1EB;
-$linkColor: #51483D;
-$linkColorHover: color.adjust($linkColor, $lightness: 20% );
-$selectionBackgroundColor: #26351C;
+$mainFont: 'Palatino Linotype', 'Book Antiqua', Palatino, FreeSerif, serif !default;
+$mainColor: #000 !default;
+$headingFont: 'Palatino Linotype', 'Book Antiqua', Palatino, FreeSerif, serif !default;
+$headingColor: #383D3D !default;
+$headingTextShadow: none !default;
+$headingTextTransform: none !default;
+$backgroundColor: #F0F1EB !default;
+$linkColor: #51483D !default;
+$linkColorHover: color.adjust($linkColor, $lightness: 20% ) !default;
+$selectionBackgroundColor: #26351C !default;
 
-$overlayElementBgColor: 0, 0, 0;
-$overlayElementFgColor: 240, 240, 240;
+$overlayElementBgColor: 0, 0, 0 !default;
+$overlayElementFgColor: 240, 240, 240 !default;
 
 .reveal a {
   line-height: 1.3em;
@@ -38,5 +38,5 @@ $overlayElementFgColor: 240, 240, 240;
 
 
 // Theme template ------------------------------
-@import "../template/theme";
+@use "../template/theme" as *;
 // ---------------------------------------------

@@ -34,16 +34,7 @@
 
 		<div class="reveal">
 			<div class="slides">
-				<section><section data-markdown="slides/0-Intro/intro.md" data-separator="^---" data-separator-vertical="^___" data-separator-notes="^Note:"></section></section>
-				<section><section data-markdown="slides/1-Keynote/keynote.md" data-separator="^---" data-separator-vertical="^___" data-separator-notes="^Note:"></section></section>
-				<section><section data-markdown="slides/2-Fundamentals/foundations.md" data-separator="^---" data-separator-vertical="^___" data-separator-notes="^Note:"></section></section>
-				<section><section data-markdown="slides/3-Demos/demos.md" data-separator="^---" data-separator-vertical="^___" data-separator-notes="^Note:"></section></section>
-				<section><section data-markdown="slides/4-Showcase/showcase.md" data-separator="^---" data-separator-vertical="^___" data-separator-notes="^Note:"></section></section>
-				<section><section data-markdown="slides/5-Live-Lab/lab.md" data-separator="^---" data-separator-vertical="^___" data-separator-notes="^Note:"></section></section>
-				<section><section data-markdown="slides/6-Ideation/options.md" data-separator="^---" data-separator-vertical="^___" data-separator-notes="^Note:"></section></section>
-				<section><section data-markdown="slides/7-Reflections/reflections.md" data-separator="^---" data-separator-vertical="^___" data-separator-notes="^Note:"></section></section>
-				<section><section data-markdown="slides/8-Closing/closing.md" data-separator="^---" data-separator-vertical="^___" data-separator-notes="^Note:"></section></section>
-				<section><section data-markdown="slides/9-Dinner/dinner.md" data-separator="^---" data-separator-vertical="^___" data-separator-notes="^Note:"></section></section>
+				<section><section data-markdown="slides/0-Intro/intro.md" data-separator="^---" data-separator-vertical="^___" data-separator-notes="^Note:"></section></section><section><section data-markdown="slides/1-Keynote/keynote.md" data-separator="^---" data-separator-vertical="^___" data-separator-notes="^Note:"></section></section><section><section data-markdown="slides/2-Fundamentals/foundations.md" data-separator="^---" data-separator-vertical="^___" data-separator-notes="^Note:"></section></section><section><section data-markdown="slides/3-Demos/demos.md" data-separator="^---" data-separator-vertical="^___" data-separator-notes="^Note:"></section></section><section><section data-markdown="slides/4-Showcase/showcase.md" data-separator="^---" data-separator-vertical="^___" data-separator-notes="^Note:"></section></section><section><section data-markdown="slides/5-Live-Lab/lab.md" data-separator="^---" data-separator-vertical="^___" data-separator-notes="^Note:"></section></section><section><section data-markdown="slides/6-Ideation/options.md" data-separator="^---" data-separator-vertical="^___" data-separator-notes="^Note:"></section></section><section><section data-markdown="slides/7-Reflections/reflections.md" data-separator="^---" data-separator-vertical="^___" data-separator-notes="^Note:"></section></section><section><section data-markdown="slides/8-Closing/closing.md" data-separator="^---" data-separator-vertical="^___" data-separator-notes="^Note:"></section></section><section><section data-markdown="slides/9-Dinner/dinner.md" data-separator="^---" data-separator-vertical="^___" data-separator-notes="^Note:"></section></section>
 			</div>
 		</div>
 
@@ -82,52 +73,6 @@
 				//parallaxBackgroundHorizontal: 0,
 				
 				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ],
-
-				markdown: {
-					preprocess: function( markdown ) {
-						var lines = markdown.split( '\n' );
-						var seenFirst = false;
-						for ( var i = 0; i < lines.length; i++ ) {
-							var line = lines[i];
-							var trimmed = line.trim();
-							
-							// Reset on slide separators
-							if ( /^---$|^___$/.test( trimmed ) ) {
-								seenFirst = false;
-								continue;
-							}
-
-							// Skip empty lines or existing notes
-							if ( trimmed === '' || /^Note:/.test(trimmed) ) continue;
-
-							var isHeader = /^#{1,6}\s/.test( trimmed );
-							var isListItem = /^[-*+]\s/.test( trimmed ) || /^\d+\.\s/.test( trimmed );
-
-							if ( isHeader || isListItem ) {
-								if ( !seenFirst ) {
-									seenFirst = true;
-								} else {
-									// It's a subsequent element, make it a fragment if not already one
-									if ( !/class="[^"]*fragment[^"]*"/.test( line ) ) {
-										if ( /<!--\.element:/.test( line ) ) {
-											if ( /class="([^"]*)"/.test( line ) ) {
-												lines[i] = line.replace( /class="([^"]*)"/, 'class="$1 fragment"' );
-											} else {
-												lines[i] = line.replace( /<!--\.element:\s*/, '<!--.element: class="fragment" ' );
-											}
-										} else {
-											lines[i] = line + ' <!-- .element: class="fragment" -->';
-										}
-									}
-								}
-							} else {
-								// Non-empty, non-header, non-list content also counts as "seen first"
-								seenFirst = true;
-							}
-						}
-						return lines.join( '\n' );
-					}
-				},
 
 				autoAnimateStyles: [
 					'opacity',

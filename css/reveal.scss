@@ -8,7 +8,7 @@
  * Copyright (C) Hakim El Hattab, https://hakim.se
  */
 
-@import 'layout';
+@use 'layout';
 
 /*********************************************
  * GLOBAL STYLES
@@ -2109,6 +2109,6 @@ $notesWidthPercent: 25%;
  * PRINT STYLES
  *********************************************/
 
-@import 'print/pdf.scss';
-@import 'print/paper.scss';
+@use 'print/pdf';
+@use 'print/paper';
 

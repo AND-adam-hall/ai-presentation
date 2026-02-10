@@ -12,8 +12,8 @@
  */
 
  // Default mixins and settings -----------------
-@import "../template/mixins";
-@import "../template/settings";
+@use "../template/mixins" as *;
+@use "../template/settings" as *;
 // ---------------------------------------------
 
 // Include theme-specific fonts
@@ -21,38 +21,38 @@
 @import url(https://fonts.googleapis.com/css?family=Ubuntu:300,700,300italic,700italic);
 
 // Colors used in the theme
-$blood: #a23;
-$coal: #222;
-$codeBackground: #23241f;
+$blood: #a23 !default;
+$coal: #222 !default;
+$codeBackground: #23241f !default;
 
-$backgroundColor: $coal;
+$backgroundColor: $coal !default;
 
 // Main text
-$mainFont: Ubuntu, 'sans-serif';
-$mainColor: #eee;
+$mainFont: Ubuntu, 'sans-serif' !default;
+$mainColor: #eee !default;
 
 // Headings
-$headingFont: Ubuntu, 'sans-serif';
-$headingTextShadow: 2px 2px 2px $coal;
+$headingFont: Ubuntu, 'sans-serif' !default;
+$headingTextShadow: 2px 2px 2px $coal !default;
 
 // h1 shadow, borrowed humbly from 
 // (c) Default theme by Hakim El Hattab
-$heading1TextShadow: 0 1px 0 #ccc, 0 2px 0 #c9c9c9, 0 3px 0 #bbb, 0 4px 0 #b9b9b9, 0 5px 0 #aaa, 0 6px 1px rgba(0,0,0,.1), 0 0 5px rgba(0,0,0,.1), 0 1px 3px rgba(0,0,0,.3), 0 3px 5px rgba(0,0,0,.2), 0 5px 10px rgba(0,0,0,.25), 0 20px 20px rgba(0,0,0,.15);
+$heading1TextShadow: 0 1px 0 #ccc, 0 2px 0 #c9c9c9, 0 3px 0 #bbb, 0 4px 0 #b9b9b9, 0 5px 0 #aaa, 0 6px 1px rgba(0,0,0,.1), 0 0 5px rgba(0,0,0,.1), 0 1px 3px rgba(0,0,0,.3), 0 3px 5px rgba(0,0,0,.2), 0 5px 10px rgba(0,0,0,.25), 0 20px 20px rgba(0,0,0,.15) !default;
 
 // Links
-$linkColor: $blood;
-$linkColorHover: color.adjust($linkColor, $lightness: 20% );
+$linkColor: $blood !default;
+$linkColorHover: color.adjust($linkColor, $lightness: 20% ) !default;
 
 // Text selection
-$selectionBackgroundColor: $blood;
-$selectionColor: #fff;
+$selectionBackgroundColor: $blood !default;
+$selectionColor: #fff !default;
 
 // Change text colors against dark slide backgrounds
 @include light-bg-text-color(#222);
 
 
 // Theme template ------------------------------
-@import "../template/theme";
+@use "../template/theme" as *;
 // ---------------------------------------------
 
 // some overrides after theme template import

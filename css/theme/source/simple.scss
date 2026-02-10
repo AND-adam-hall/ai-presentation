@@ -9,8 +9,8 @@
 
 
 // Default mixins and settings -----------------
-@import "../template/mixins";
-@import "../template/settings";
+@use "../template/mixins" as *;
+@use "../template/settings" as *;
 // ---------------------------------------------
 
 
@@ -21,24 +21,24 @@
 
 
 // Override theme settings (see ../template/settings.scss)
-$mainFont: 'Lato', sans-serif;
-$mainColor: #000;
-$headingFont: 'News Cycle', Impact, sans-serif;
-$headingColor: #000;
-$headingTextShadow: none;
-$headingTextTransform: none;
-$backgroundColor: #fff;
-$linkColor: #00008B;
-$linkColorHover: color.adjust($linkColor, $lightness: 20% );
-$selectionBackgroundColor: rgba(0, 0, 0, 0.99);
+$mainFont: 'Lato', sans-serif !default;
+$mainColor: #000 !default;
+$headingFont: 'News Cycle', Impact, sans-serif !default;
+$headingColor: #000 !default;
+$headingTextShadow: none !default;
+$headingTextTransform: none !default;
+$backgroundColor: #fff !default;
+$linkColor: #00008B !default;
+$linkColorHover: color.adjust($linkColor, $lightness: 20% ) !default;
+$selectionBackgroundColor: rgba(0, 0, 0, 0.99) !default;
 
-$overlayElementBgColor: 0, 0, 0;
-$overlayElementFgColor: 240, 240, 240;
+$overlayElementBgColor: 0, 0, 0 !default;
+$overlayElementFgColor: 240, 240, 240 !default;
 
 // Change text colors against dark slide backgrounds
 @include dark-bg-text-color(#fff);
 
 
 // Theme template ------------------------------
-@import "../template/theme";
+@use "../template/theme" as *;
 // ---------------------------------------------

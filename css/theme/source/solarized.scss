@@ -6,8 +6,8 @@
 
 
 // Default mixins and settings -----------------
-@import "../template/mixins";
-@import "../template/settings";
+@use "../template/mixins" as *;
+@use "../template/settings" as *;
 // ---------------------------------------------
 
 
@@ -26,34 +26,34 @@ html * {
 }
 
 // Solarized colors
-$base03:    #002b36;
-$base02:    #073642;
-$base01:    #586e75;
-$base00:    #657b83;
-$base0:     #839496;
-$base1:     #93a1a1;
-$base2:     #eee8d5;
-$base3:     #fdf6e3;
-$yellow:    #b58900;
-$orange:    #cb4b16;
-$red:       #dc322f;
-$magenta:   #d33682;
-$violet:    #6c71c4;
-$blue:      #268bd2;
-$cyan:      #2aa198;
-$green:     #859900;
+$base03:    #002b36 !default;
+$base02:    #073642 !default;
+$base01:    #586e75 !default;
+$base00:    #657b83 !default;
+$base0:     #839496 !default;
+$base1:     #93a1a1 !default;
+$base2:     #eee8d5 !default;
+$base3:     #fdf6e3 !default;
+$yellow:    #b58900 !default;
+$orange:    #cb4b16 !default;
+$red:       #dc322f !default;
+$magenta:   #d33682 !default;
+$violet:    #6c71c4 !default;
+$blue:      #268bd2 !default;
+$cyan:      #2aa198 !default;
+$green:     #859900 !default;
 
 // Override theme settings (see ../template/settings.scss)
-$mainColor: $base00;
-$headingColor: $base01;
-$headingTextShadow: none;
-$backgroundColor: $base3;
-$linkColor: $blue;
-$linkColorHover: color.adjust($linkColor, $lightness: 20% );
-$selectionBackgroundColor: $magenta;
+$mainColor: $base00 !default;
+$headingColor: $base01 !default;
+$headingTextShadow: none !default;
+$backgroundColor: $base3 !default;
+$linkColor: $blue !default;
+$linkColorHover: color.adjust($linkColor, $lightness: 20% ) !default;
+$selectionBackgroundColor: $magenta !default;
 
-$overlayElementBgColor: 0, 0, 0;
-$overlayElementFgColor: 240, 240, 240;
+$overlayElementBgColor: 0, 0, 0 !default;
+$overlayElementFgColor: 240, 240, 240 !default;
 
 // Background generator
 // @mixin bodyBackground() {
@@ -63,5 +63,5 @@ $overlayElementFgColor: 240, 240, 240;
 
 
 // Theme template ------------------------------
-@import "../template/theme";
+@use "../template/theme" as *;
 // ---------------------------------------------
