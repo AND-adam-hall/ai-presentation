@@ -7,8 +7,8 @@
 
 
 // Default mixins and settings -----------------
-@use "../template/mixins" as *;
-@use "../template/settings" as *;
+@import "../template/mixins";
+@import "../template/settings";
 // ---------------------------------------------
 
 

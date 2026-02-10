@@ -169,19 +169,14 @@ function compileSass() {
 return through.obj( ( vinylFile, encoding, callback ) => {
     const transformedFile = vinylFile.clone();
 
-    sass.render({
-        data: transformedFile.contents.toString(),
-        file: transformedFile.path,
-    }, ( err, result ) => {
-        if( err ) {
-            callback(err);
-        }
-        else {
-            transformedFile.extname = '.css';
-            transformedFile.contents = result.css;
-            callback( null, transformedFile );
-        }
-    });
+    try {
+        const result = sass.compile(transformedFile.path);
+        transformedFile.extname = '.css';
+        transformedFile.contents = Buffer.from(result.css);
+        callback( null, transformedFile );
+    } catch (err) {
+        callback(err);
+    }
 });
 }
 
