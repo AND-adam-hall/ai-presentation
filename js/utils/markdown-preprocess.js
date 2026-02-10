@@ -14,11 +14,12 @@ window.initAutoFragments = function() {
         // We only care about "leaf" slides (those that don't contain other sections)
         if (slide.querySelector('section')) return;
 
-        // Find all potential fragment elements: headers and list items
-        // We look for direct children or items inside lists
-        const candidates = slide.querySelectorAll('h1, h2, h3, h4, h5, h6, li, p');
+        // Find all potential fragment elements
+        // We look for headers, list items, paragraphs, images, code blocks, and quotes
+        const candidates = slide.querySelectorAll('h1, h2, h3, h4, h5, h6, li, p, img, pre, blockquote');
         
         let seenFirst = false;
+        let fragmentCount = 0;
         
         candidates.forEach((el) => {
             // Skip if it's already a fragment
@@ -33,13 +34,17 @@ window.initAutoFragments = function() {
             if (!seenFirst) {
                 // This is the first meaningful element, keep it visible
                 seenFirst = true;
-                console.log(`Slide ${slideIndex}: Keeping first element visible:`, el.tagName, el.textContent.substring(0, 20));
+                console.log(`Slide ${slideIndex}: [VISIBLE]`, el.tagName, el.textContent.substring(0, 30).trim() || '(media)');
             } else {
                 // This is a subsequent element, make it a fragment
                 el.classList.add('fragment');
-                // el.setAttribute('data-fragment-index', ...); // Optional: fine-grained control
+                fragmentCount++;
             }
         });
+
+        if (fragmentCount > 0) {
+            console.log(`Slide ${slideIndex}: [ADDED] ${fragmentCount} fragments`);
+        }
     });
 
     // Tell Reveal.js to sync its internal state with the new fragments we just added
