@@ -1,4 +1,4 @@
-# PA Media AI Initiative<!--.element: class="r-fit-text" -->
+# PA Media AI Navigator Immersion Session<!--.element: class="r-fit-text" -->
 ### Mindset Shift & Innovation
 ---
 # Adam Hall<!--.element: class="r-fit-text" -->

@@ -1,3 +1,4 @@
+@use "sass:color";
 /**
  * Solarized Dark theme for reveal.js.
  * Author: Achim Staebler
@@ -43,7 +44,7 @@ $headingColor: $base2;
 $headingTextShadow: none;
 $backgroundColor: $base03;
 $linkColor: $blue;
-$linkColorHover: lighten( $linkColor, 20% );
+$linkColorHover: color.adjust($linkColor, $lightness: 20% );
 $selectionBackgroundColor: $magenta;
 
 // Change text colors against light slide backgrounds
