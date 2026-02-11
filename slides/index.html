@@ -41,6 +41,7 @@
 		<script src="dist/reveal.js"></script>
 		<script src="plugin/notes/notes.js"></script>
 		<script src="plugin/markdown/markdown.js"></script>
+		<script src="js/utils/slide-strategies.js"></script>
 		<script src="js/utils/markdown-preprocess.js"></script>
 		<script src="plugin/highlight/highlight.js"></script>
 		<script>
@@ -74,6 +75,10 @@
 				//parallaxBackgroundHorizontal: 0,
 				
 				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ],
+
+				markdown: {
+					preprocess: window.markdownPreProcessor
+				},
 
 				autoAnimateStyles: [
 					'opacity',

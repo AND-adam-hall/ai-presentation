@@ -1,68 +1,47 @@
 /**
- * Automatically makes subsequent headers and list items fragments.
- * This script runs after Reveal.js has rendered the markdown into HTML.
+ * Handles slide-specific behaviors based on markdown labels.
+ * 
+ * Pre-processor: Converts ---"type"--- into standard separators + slide attributes.
+ * Post-processor: Applies behaviors based on those attributes.
  */
-console.log('Markdown Post-processor Script Loaded');
 
+// 1. PRE-PROCESSOR
+// This function must be called by Reveal.js markdown plugin
+window.markdownPreProcessor = function(markdown) {
+    // Regex to find ---"type"--- or ---"type"
+    // We convert it to standard --- followed by a Reveal.js slide attribute
+    return markdown.replace(/^---"([a-z0-9]+)"---$/gm, '---\n<!-- .slide: data-style="$1" -->')
+                   .replace(/^---"([a-z0-9]+)"$/gm, '---\n<!-- .slide: data-style="$1" -->');
+};
+
+// 2. POST-PROCESSOR
+// Applies the modular strategies defined in window.SlideStrategies
 window.initAutoFragments = function() {
-    console.log('Initializing Auto-Fragments...');
+    console.log('Initializing Modular Slide Strategies...');
     
-    // Find all slides (sections)
     const slides = document.querySelectorAll('.reveal .slides section');
     
     slides.forEach((slide, slideIndex) => {
-        // We only care about "leaf" slides (those that don't contain other sections)
+        // We only care about leaf slides
         if (slide.querySelector('section')) return;
 
-        // Find all potential fragment elements
-        // We look for headers, list items, paragraphs, images, code blocks, and quotes
-        const candidates = slide.querySelectorAll('h1, h2, h3, h4, h5, h6, li, p, img, pre, blockquote');
+        // Determine style from data-style attribute, default to 'animated'
+        const style = slide.getAttribute('data-style') || 'animated';
         
-        let seenFirst = false;
-        let fragmentCount = 0;
-        
-        candidates.forEach((el) => {
-            // Skip if it's already a fragment
-            if (el.classList.contains('fragment')) {
-                seenFirst = true;
-                return;
-            }
-
-            // Skip "Note:" elements
-            if (el.textContent.trim().startsWith('Note:')) return;
-
-            if (!seenFirst) {
-                // This is the first meaningful element, keep it visible
-                seenFirst = true;
-                console.log(`Slide ${slideIndex}: [VISIBLE]`, el.tagName, el.textContent.substring(0, 30).trim() || '(media)');
-            } else {
-                // This is a subsequent element, make it a fragment
-                el.classList.add('fragment');
-                fragmentCount++;
-            }
-        });
-
-        if (fragmentCount > 0) {
-            console.log(`Slide ${slideIndex}: [ADDED] ${fragmentCount} fragments`);
+        if (window.SlideStrategies && typeof window.SlideStrategies[style] === 'function') {
+            window.SlideStrategies[style](slide, slideIndex);
+        } else {
+            console.warn(`Unknown slide style: ${style}. Falling back to animated.`);
+            window.SlideStrategies.animated(slide, slideIndex);
         }
     });
 
-    // Tell Reveal.js to sync its internal state with the new fragments we just added
     if (window.Reveal) {
         Reveal.sync();
     }
 };
 
-// Hook into Reveal.js ready event
+// Hook into Reveal.js
 if (window.Reveal) {
-    Reveal.on('ready', () => {
-        window.initAutoFragments();
-    });
-} else {
-    // Fallback if script loads after Reveal is ready
-    document.addEventListener('DOMContentLoaded', () => {
-        if (window.Reveal && Reveal.isReady()) {
-            window.initAutoFragments();
-        }
-    });
+    Reveal.on('ready', () => window.initAutoFragments());
 }
