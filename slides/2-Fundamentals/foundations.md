@@ -19,6 +19,14 @@ Note: AI does not "think" or "understand" in the human sense. It uses mathematic
 Note: GIGO is the ultimate risk to AI adoption. AI acts as an amplifier—it magnifies both the value (signal) and the errors (noise) in the input. To succeed, we must move our data up the hierarchy from "Bronze" (unstructured noise like loose PDFs) to "Gold" (structured, linked signal). PA Media's archive is a "Gold" mine waiting to be activated.
 
 ---
+### Human in the Loop (HITL)
+- From **Executor** to **Conductor**
+- The Three-Gate Check
+- "Eject to Human" Pattern
+
+Note: As we move into Agentic work, the human role shifts from doing the work (Executor) to supervising it (Conductor). You define the 'Intent' and set the 'Constraints', while AI manages the execution. To ensure safety, we use the "Three-Gate Check": 1. Immediate Scan (30s), 2. Validation (5m fact-check), and 3. Integration (Final sign-off). High-stakes systems should include an "Eject to Human" pattern, where the AI transfers the task to an expert if its confidence score drops.
+
+---
 ### Guardrails (Quick Look)
 - **Three-Layer Defence**: Technical, Process, Culture
 - **Lenses**: The Six Lenses of Readiness
