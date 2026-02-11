@@ -1,7 +1,7 @@
-
 const markdownPreProcessor = function(markdown) {
-    return markdown.replace(/^---"([a-z0-9]+)"---$/gm, '---\\n<!-- .slide: data-style="$1" -->')
-                   .replace(/^---"([a-z0-9]+)"$/gm, '---\\n<!-- .slide: data-style="$1" -->');
+    // Combined regex to find ---"type"---, ---type---, ---"type", or ---type
+    // Allows optional trailing whitespace [ \t]*
+    return markdown.replace(/^---"?([a-z0-9]+)"?(-{0,3})[ \t]*$/gm, '---\\n<!-- .slide: data-style="$1" -->');
 };
 
 const runTest = (name, input, expected) => {
@@ -19,7 +19,7 @@ const runTest = (name, input, expected) => {
     }
 };
 
-runTest('Plain label', 
+runTest('Quoted label with dashes', 
 `# Slide 1
 ---"plain"---
 # Slide 2`, 
@@ -27,12 +27,28 @@ runTest('Plain label',
 ---\\n<!-- .slide: data-style="plain" -->
 # Slide 2`);
 
-runTest('Animated label', 
+runTest('Unquoted label with dashes', 
 `# Slide 1
----"animated"---
+---plain---
 # Slide 2`, 
 `# Slide 1
----\\n<!-- .slide: data-style="animated" -->
+---\\n<!-- .slide: data-style="plain" -->
+# Slide 2`);
+
+runTest('Unquoted label no trailing dashes', 
+`# Slide 1
+---plain
+# Slide 2`, 
+`# Slide 1
+---\\n<!-- .slide: data-style="plain" -->
+# Slide 2`);
+
+runTest('Label with trailing whitespace', 
+`# Slide 1
+---plain   
+# Slide 2`, 
+`# Slide 1
+---\\n<!-- .slide: data-style="plain" -->
 # Slide 2`);
 
 runTest('No label', 

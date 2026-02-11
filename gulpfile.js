@@ -266,7 +266,32 @@ gulp.task('eslint', () => gulp.src(['./js/**', 'gulpfile.js'])
         .pipe(eslint())
         .pipe(eslint.format()))
 
-gulp.task('test', gulp.series( 'eslint', 'qunit' ))
+gulp.task('test-node', (done) => {
+    const { exec } = require('child_process');
+    const testFiles = ['test-preprocess.js', 'test-strategies.js', 'test-approval.js'];
+    let completed = 0;
+    let failed = false;
+
+    if (testFiles.length === 0) return done();
+
+    testFiles.forEach(file => {
+        exec(`node ${file}`, (err, stdout, stderr) => {
+            console.log(`\n--- Running ${file} ---`);
+            console.log(stdout);
+            if (err) {
+                console.error(`Error in ${file}:`, stderr);
+                failed = true;
+            }
+            completed++;
+            if (completed === testFiles.length) {
+                if (failed) done(new Error('One or more Node tests failed'));
+                else done();
+            }
+        });
+    });
+});
+
+gulp.task('test', gulp.series( 'eslint', 'test-node' ))
 
 gulp.task('default', gulp.series(gulp.parallel('js', 'css', 'plugins'), 'test'))
 
@@ -312,10 +337,10 @@ function renderPresentations() {
             
             htmlContent += myFiles.map(file => {
                 if(file.endsWith(".md")) {
-                    return `<section data-markdown="${file}" data-separator="^---" data-separator-vertical="^___" data-separator-notes="^Note:"></section>`;
+                    return `<section data-markdown="${file}" data-source="${file}" data-separator="^---" data-separator-vertical="^___" data-separator-notes="^Note:"></section>`;
                 } else {
                     let html = fs.readFileSync(file);
-                    return html;
+                    return `<section data-source="${file}">${html}</section>`;
                 }
             }).join("")
             htmlContent += "</section>"
