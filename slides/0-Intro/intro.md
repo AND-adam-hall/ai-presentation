@@ -1,12 +1,12 @@
 # PA Media AI Navigator Immersion Session<!--.element: class="r-fit-text" -->
 ### Mindset Shift & Innovation
----
+---"plain"---
 # Adam Hall<!--.element: class="r-fit-text" -->
 <p class="r-fit-text">Agile Coach <span class="andlogo">AND</span> Waste Reducer</p>
----
+---"plain"---
 # Leena Pankhania<!--.element: class="r-fit-text" -->
 <p class="r-fit-text">Strategic Lead <span class="andlogo">AND</span> AI Innovator</p>
----
+---"plain"---
 ### Today's Schedule
 
 - **09:30** Open & Overview

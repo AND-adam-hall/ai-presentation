@@ -43,6 +43,10 @@ $headingTextShadow: 0px 0px 6px rgba(0,0,0,0.2) !default;
 $headingFontWeight: 600 !default;
 $headingTextTransform: none !default;
 
+.reveal h1, .reveal h2, .reveal h3, .reveal h4, .reveal h5, .reveal h6 {
+    text-transform: none;
+}
+
 .andlogo {
 	background-color: $selectionBackgroundColor;
 	color: $selectionColor;
